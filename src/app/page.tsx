@@ -1,11 +1,13 @@
 import { getTopStories } from "@/services/hn";
 import Link from "next/link";
+import StartPageNav from "./startPageNav";
 
 export default async function Home() {
   const topstories = await getTopStories();
 
   return (
     <main>
+      <StartPageNav ids={topstories.map(s => s.id)}/>
       { topstories.map((story, index) => {
         const url = story.url ? new URL(story.url) : null;
 
